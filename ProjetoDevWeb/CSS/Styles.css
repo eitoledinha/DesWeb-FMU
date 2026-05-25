@@ -1,49 +1,130 @@
-body{
-    color: aliceblue;
-    background-size: cover;
-    background-repeat: no-repeat;
+/* ==========================================================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ========================================================================== */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.centro{
+body {
+    color: aliceblue;
+    /* Ajustes para a imagem de fundo ser flexível e não repetir */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Garante que o body ocupe a altura toda da tela para centralizar o conteúdo */
+    min-height: 100vh;
+    width: 100%;
+    /* Flexbox: Centralização Mágica (Vertical e Horizontal) */
     display: flex;
-    align-self: center;
-    
-}
-#title{
-    text-align: center;
-    margin: auto 60px;
+    justify-content: center;
     align-items: center;
-    font-size: 86px;
+    /* Espaçamento interno para o conteúdo não colar na borda em celulares */
+    padding: 20px;
 }
 
-.btn_comecar{
-    color: aliceblue;
-    text-decoration: none;
-    border: 1px solid #D06833;
-    padding: 14px;
-    background-color: #D06833;
-    border-radius: 10px;
-    font-size: 34px;
-    margin: 15px auto auto auto;
-    border-radius: 20px;
+/* ==========================================================================
+   ESTRUTURA PRINCIPAL
+   ========================================================================== */
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 900px; /* Limita a largura em telas muito grandes */
 }
 
-hr{
-    width: 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
+/* Título flexível */
+#title {
+    /* Usando rem para acompanhar o tamanho da tela */
+    font-size: 4.5rem; 
+    font-weight: bold;
+    line-height: 1.2;
+    /* Pequeno padding lateral para textos longos no mobile */
+    padding: 0 10px;
 }
-.principal{
-    align-self: center;
-    margin-top: 200px;
-}
-.btn_comecar:hover{
-    color: aliceblue;
-    font-weight: 900;
-    text-decoration: none;
-    border: 1px solid #D06833;
-    padding: 16px;
+
+/* Linha decorativa laranja */
+hr {
+    width: 80px; /* Largura fixa ideal */
+    height: 3px;
     background-color: #D06833;
-    border-radius: 20px;
+    border: none;
+    /* Espaçamento acima e abaixo da linha */
+    margin: 40px 0;
+}
+
+/* Container do botão */
+.centro {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Estilo do Botão Principal (Começar) */
+.btn_comecar {
+    color: aliceblue;
+    text-decoration: none;
+    background-color: #D06833;
+    border: 2px solid #D06833;
+    /* Espaçamento interno do botão */
+    padding: 14px 50px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    /* Borda arredondada maior (estilo pílula) */
+    border-radius: 30px;
+    /* Transições suaves para efeitos de hover */
+    transition: all 0.3s ease;
+    /* Sombra suave para dar profundidade */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Efeitos ao passar o mouse (Hover) */
+.btn_comecar:hover {
+    background-color: #b55422;
+    border-color: #b55422;
+    /* Pequeno efeito flutuante */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   REGRAS DE RESPONSIVIDADE (MOBILE-FIRST ADAPTADO)
+   ========================================================================== */
+
+/* Ajustes para Tablets e Telas Médias (até 900px) */
+@media (max-width: 900px) {
+    #title {
+        font-size: 3.2rem; /* Diminui um pouco o título */
+    }
+    .btn_comecar {
+        font-size: 1.5rem;
+        padding: 12px 40px;
+    }
+}
+
+/* Ajustes para Smartphones (Telas Pequenas - até 600px) */
+@media (max-width: 600px) {
+    #title {
+        /* Encolhe o título para caber perfeitamente no celular */
+        font-size: 2.2rem; 
+    }
+    
+    hr {
+        /* Diminui os espaçamentos */
+        margin: 25px 0;
+    }
+
+    .btn_comecar {
+        font-size: 1.3rem;
+        /* O botão expande e toma a largura da tela no mobile */
+        padding: 12px 0;
+        width: 100%; 
+        max-width: 280px; /* Impede que fique exageradamente largo */
+        text-align: center;
+    }
 }
