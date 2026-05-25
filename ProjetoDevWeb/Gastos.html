@@ -45,14 +45,19 @@
 
       document.addEventListener("DOMContentLoaded", function() {
         const dadosSalvos = localStorage.getItem('dadosSimulacaoEdicao');
+        
         if (dadosSalvos) {
           const dados = JSON.parse(dadosSalvos);
-          // Se existirem detalhes guardados das subcategorias de gastos, popula os inputs dinamicamente
           if (dados.detalheGastos) {
             IDsCategorias.forEach(id => {
               document.getElementById(id).value = dados.detalheGastos[id] || "";
             });
           }
+        } else {
+          // Garante campos limpos em novas simulações convencionais
+          IDsCategorias.forEach(id => {
+            document.getElementById(id).value = "";
+          });
         }
       });
 
@@ -66,6 +71,12 @@
           totalGastos += limparMascara(campoTexto);
         });
 
+        // VALIDAÇÃO EXATA: Se a soma de todos os gastos for zero, impede o envio e exibe o alert
+        if (totalGastos <= 0) {
+          alert("Por favor, insira pelo menos um valor de gasto para conseguir finalizar.");
+          return; // Aborta a execução para não salvar dados vazios e não mudar de página
+        }
+
         let dadosEdicao = JSON.parse(localStorage.getItem('dadosSimulacaoEdicao')) || {};
         let listaSimulacoes = JSON.parse(localStorage.getItem('listaSimulacoes')) || [];
         const idAtivo = localStorage.getItem('idEmEdicao');
@@ -75,11 +86,9 @@
         dadosEdicao.detalheGastos = dicionarioGastos;
 
         if (idAtivo) {
-          // Cenário A: Editando um registro existente no Dashboard
           listaSimulacoes = listaSimulacoes.map(item => item.id === parseInt(idAtivo) ? { ...item, ...dadosEdicao } : item);
           localStorage.removeItem('idEmEdicao');
         } else {
-          // Cenário B: Criando uma nova simulação direto pelo fluxo convencional
           const hoje = new Date();
           dadosEdicao.id = Date.now();
           dadosEdicao.data = hoje.toLocaleDateString('pt-BR', {year: '2-digit', month: '2-digit', day: '2-digit'});
@@ -87,12 +96,9 @@
           listaSimulacoes.push(dadosEdicao);
         }
 
-        // Salva a lista consolidada de volta na persistência principal
         localStorage.setItem('listaSimulacoes', JSON.stringify(listaSimulacoes));
-        localStorage.removeItem('dadosSimulacaoEdicao');
 
-        // Retorna direto para o painel atualizado com sucesso
-        window.location.href = '../Dashboard.html';
+        window.location.href = './PlanoAcao.html';
       }
     </script>
 </body>
