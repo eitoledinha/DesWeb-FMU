@@ -3,256 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FMU - CRUD</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
-
-    body {
-      background-color: #1c0033;
-      color: #fff;
-      padding: 2rem;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    .profile-icon {
-      background-color: white;
-      cursor: pointer;
-      color: #1c0033;
-      border-radius: 50%;
-      padding: 0.6rem;
-      font-size: 1.2rem;
-    }
-
-    .simulacao-btn a {
-      display: block;
-      background-color: #00a000;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      border-radius: 10px;
-      font-weight: 500;
-      margin-bottom: 1rem;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .simulacao-btn a:hover {
-      background-color: #008000;
-    }
-
-    .search-bar {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      align-items: stretch;
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 0.8rem 1rem;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .filter-container {
-      position: relative;
-    }
-
-    .filter-btn {
-      height: 100%;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 10px;
-      background-color: #eee;
-      color: #333;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;   
-      justify-content: center;
-    }
-
-    .filter-menu {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 105;
-      min-width: 160px;
-      overflow: hidden;
-    }
-
-    .filter-menu button {
-      display: block;
-      width: 100%;
-      padding: 0.7rem 1rem;
-      background: none;
-      border: none;
-      color: #333;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .filter-menu button:hover {
-      background-color: #eee;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #f5f5f5;
-      border-radius: 1rem;
-      color: #333;
-    }
-
-    tbody {
-      display: table-row-group;
-    }
-    
-    tbody::after {
-      content: '';
-      display: table-row;
-      height: 60px; 
-    }
-
-    th, td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid #ccc;
-    }
-
-    thead {
-      background-color: #eaeaea;
-    }
-
-    th:first-child { border-top-left-radius: 1rem; }
-    th:last-child { border-top-right-radius: 1rem; }
-
-    .options {
-      cursor: pointer;
-      font-size: 1.5rem;
-      position: relative;
-      padding: 5px 10px;
-      display: inline-block;
-    }
-
-    .crud-menu {
-      display: none;
-      position: absolute;
-      top: 30px;
-      right: 0;
-      background-color: white;
-      color: #1c0033;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-      z-index: 100;
-    }
-
-    .crud-menu button {
-      display: block;
-      padding: 0.5rem 1rem;
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .crud-menu button:hover {
-      background-color: #eee;
-    }
-  </style>
+  <title>FMU - Dashboard</title>
+  <link rel="stylesheet" href="./Pages/styles.css"/>
 </head>
-<body>
-  <header>
-    <h1>FMU</h1>
-    <div class="profile-icon">👤</div>
-  </header>
+<body class="body-dashboard">
+  
+  <div class="dashboard-wrapper">
+    <header>
+      <h1>FMU</h1>
+      <div class="profile-icon">👤</div>
+    </header>
 
-  <div class="simulacao-btn">
-    <a href="./ProjetoDevWeb/simulador.html">Faça uma simulação agora!</a>
-  </div>
-
-  <div class="search-bar">
-    <div class="filter-container">
-      <button class="filter-btn" id="filter-main-btn" onclick="toggleFiltro(event)">Filtro</button>
-      <div class="filter-menu" id="filter-dropdown"></div>
+    <div class="simulacao-btn">
+      <a href="./ProjetoDevWeb/simulador.html">Faça uma simulação agora!</a>
     </div>
-    <input type="text" id="search-input" oninput="filtrarTabela()" placeholder="Procure a análise que você fez" />
-  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Data</th>
-        <th>Hora</th>
-        <th>Contrato</th>
-        <th>Valor Recebido</th>
-        <th>Gastos</th>
-        <th>Sobra</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="table-body"></tbody>
-  </table>
+    <div class="search-bar">
+      <div class="filter-container">
+        <button class="filter-btn" id="filter-main-btn" onclick="toggleFiltro(event)">Filtro</button>
+        <div class="filter-menu" id="filter-dropdown"></div>
+      </div>
+      <input type="text" id="search-input" oninput="filtrarTabela()" placeholder="Procure a análise que você fez" />
+    </div>
+
+    <div id="aviso-vazio" class="sem-registro" style="display: none;">
+      Nenhum registro encontrado
+    </div>
+
+    <table id="main-table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Contrato</th>
+          <th>Valor Recebido</th>
+          <th>Gastos</th>
+          <th>Sobra</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
 
   <script>
     let dataFiltroAtual = 'todas';
-
-    const registrosPadrao = [
-      { id: 1, data: '15/01/25', hora: '9:30hs', contrato: 'Contrato', recebido: 'R$ 1.500,00', gastos: 'R$ 200,00', sobra: 'R$ 1.300,00' },
-      { id: 2, data: '15/01/25', hora: '9:30hs', contrato: 'CLT', recebido: 'R$ 5.000,00', gastos: 'R$ 500,00', sobra: 'R$ 4.500,00' }
-    ];
-
-    if (!localStorage.getItem('listaSimulacoes')) {
-      localStorage.setItem('listaSimulacoes', JSON.stringify(registrosPadrao));
-    }
 
     document.addEventListener("DOMContentLoaded", function() {
       renderizarTabela();
     });
 
+    function converterParaNumero(valor) {
+      if (typeof valor === 'number') return valor;
+      if (!valor) return 0;
+      let limpo = valor.replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+      return parseFloat(limpo) || 0;
+    }
+
     function renderizarTabela() {
       const lista = JSON.parse(localStorage.getItem('listaSimulacoes')) || [];
       const tbody = document.getElementById('table-body');
+      const tabela = document.getElementById('main-table');
+      const aviso = document.getElementById('aviso-vazio');
+      
       tbody.innerHTML = '';
+
+      if (lista.length === 0) {
+        tabela.style.display = 'none';
+        aviso.style.display = 'block';
+        atualizarOpcoesDeFiltro([]);
+        return;
+      }
+
+      tabela.style.display = 'table';
+      aviso.style.display = 'none';
 
       lista.forEach(reg => {
         const tr = document.createElement('tr');
         tr.setAttribute('data-id', reg.id); 
         
+        const vRecebido = converterParaNumero(reg.recebido);
+        const vGastos = converterParaNumero(reg.gastos);
+        const vSobra = converterParaNumero(reg.sobra);
+
         tr.innerHTML = `
           <td>${reg.data}</td>
-          <td>${reg.hora || '9:30hs'}</td>
-          <td>${reg.contrato}</td>
-          <td>${reg.recebido}</td>
-          <td>${reg.gastos}</td>
-          <td>${reg.sobra}</td>
+          <td>${reg.hora || '12:00hs'}</td>
+          <td>${reg.contrato || 'Simulação'}</td>
+          <td>R$ ${vRecebido.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>R$ ${vGastos.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+          <td>R$ ${vSobra.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
           <td>
             <div class="options" onclick="toggleMenuTresPontos(this, event)">⋮
               <div class="crud-menu">
@@ -271,8 +111,9 @@
 
     function atualizarOpcoesDeFiltro(lista) {
       const filterMenu = document.getElementById('filter-dropdown');
+      if (!filterMenu) return;
+      
       const datasEncontradas = new Set();
-
       lista.forEach(item => {
         if (item.data) datasEncontradas.add(item.data.trim());
       });
@@ -302,22 +143,19 @@
 
     function filtrarTabela() {
       const textoBusca = document.getElementById('search-input').value.toLowerCase();
-      const linhas = document.querySelectorAll('#table-body tr');
+      const rows = document.querySelectorAll('#table-body tr');
 
-      linhas.forEach(linha => {
-        if (!linha.querySelector('td')) return;
+      rows.forEach(row => {
+        const firstCell = row.querySelector('td');
+        if (!firstCell) return;
 
-        const textoDaLinha = linha.innerText.toLowerCase();
-        const colunaData = linha.querySelectorAll('td')[0].innerText.trim();
+        const textoDaLinha = row.innerText.toLowerCase();
+        const colunaData = firstCell.innerText.trim();
 
         const bateData = (dataFiltroAtual === 'todas' || colunaData === dataFiltroAtual);
         const bateTexto = textoDaLinha.includes(textoBusca);
 
-        if (bateData && bateTexto) {
-          linha.style.display = '';
-        } else {
-          linha.style.display = 'none';
-        }
+        row.style.display = (bateData && bateTexto) ? '' : 'none';
       });
     }
 
@@ -325,7 +163,9 @@
       e.stopPropagation();
       const menuAtual = elemento.querySelector('.crud-menu');
       
-      document.getElementById('filter-dropdown').style.display = 'none';
+      const dropdown = document.getElementById('filter-dropdown');
+      if (dropdown) dropdown.style.display = 'none';
+      
       document.querySelectorAll('.crud-menu').forEach(m => {
         if (m !== menuAtual) m.style.display = 'none';
       });
@@ -348,18 +188,16 @@
     function editarLinha(botao, e) {
       e.stopPropagation();
       const row = botao.closest('tr');
-      const cells = row.querySelectorAll('td');
+      const idEditar = parseInt(row.getAttribute('data-id'));
+      
+      let lista = JSON.parse(localStorage.getItem('listaSimulacoes')) || [];
+      const registro = lista.find(item => item.id === idEditar);
 
-      const tipoRenda = cells[2].innerText.trim(); 
-      const valorRecebido = cells[3].innerText.replace('R$', '').replace(/\./g, '').trim(); 
-
-      const dadosEdicao = {
-        renda: tipoRenda,
-        valor: valorRecebido
-      };
-
-      localStorage.setItem('dadosSimulacaoEdicao', JSON.stringify(dadosEdicao));
-      window.location.href = './ProjetoDevWeb/Rendas.html';
+      if (registro) {
+        localStorage.setItem('idEmEdicao', idEditar);
+        localStorage.setItem('dadosSimulacaoEdicao', JSON.stringify(registro));
+        window.location.href = './ProjetoDevWeb/Rendas.html';
+      }
     }
 
     function fecharTodosMenus() {
