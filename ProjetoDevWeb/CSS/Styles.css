@@ -5,28 +5,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
     color: aliceblue;
-    /* Ajustes para a imagem de fundo ser flexível e não repetir */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* Garante que o body ocupe a altura toda da tela para centralizar o conteúdo */
     min-height: 100vh;
     width: 100%;
-    /* Flexbox: Centralização Mágica (Vertical e Horizontal) */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Espaçamento interno para o conteúdo não colar na borda em celulares */
     padding: 20px;
 }
 
 /* ==========================================================================
-   ESTRUTURA PRINCIPAL
+   ESTRUTURA PRINCIPAL (Fidelidade ao Layout Original)
    ========================================================================== */
 .principal {
     display: flex;
@@ -35,27 +30,28 @@ body {
     justify-content: center;
     text-align: center;
     width: 100%;
-    max-width: 900px; /* Limita a largura em telas muito grandes */
+    max-width: 1000px;
+    margin-top: 80px; 
 }
 
-/* Título flexível */
+/* Título com a fonte elegante original */
 #title {
-    /* Usando rem para acompanhar o tamanho da tela */
-    font-size: 4.5rem; 
-    font-weight: bold;
-    line-height: 1.2;
-    /* Pequeno padding lateral para textos longos no mobile */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 5.3rem;
+    font-weight: normal;
+    line-height: 1.15;
     padding: 0 10px;
+    letter-spacing: 0.5px;
 }
 
-/* Linha decorativa laranja */
+/* A linha decorativa fina e branca original */
 hr {
-    width: 80px; /* Largura fixa ideal */
-    height: 3px;
-    background-color: #D06833;
+    width: 10%;
+    max-width: 120px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
     border: none;
-    /* Espaçamento acima e abaixo da linha */
-    margin: 40px 0;
+    margin: 45px 0;
 }
 
 /* Container do botão */
@@ -65,66 +61,70 @@ hr {
     width: 100%;
 }
 
-/* Estilo do Botão Principal (Começar) */
+/* Botão retangular com dimensões e FONTE idênticas ao estilocontrato.css */
 .btn_comecar {
+    /* MODIFICADO: Fonte alterada para Arial para bater 100% com o estilocontrato.css */
+    font-family: 'Arial', sans-serif; 
     color: aliceblue;
     text-decoration: none;
-    background-color: #D06833;
-    border: 2px solid #D06833;
-    /* Espaçamento interno do botão */
-    padding: 14px 50px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    /* Borda arredondada maior (estilo pílula) */
-    border-radius: 30px;
-    /* Transições suaves para efeitos de hover */
-    transition: all 0.3s ease;
-    /* Sombra suave para dar profundidade */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #D06833; /* Mantém a cor laranja original da primeira tela */
+    border: none; 
+    
+    /* Proporções estritas copiadas do seu modelo de botão */
+    padding: 12px 30px; 
+    font-size: 16px; 
+    border-radius: 8px; 
+    margin-top: 20px;
+    
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s ease;
 }
 
-/* Efeitos ao passar o mouse (Hover) */
+/* Efeito Hover */
 .btn_comecar:hover {
     background-color: #b55422;
-    border-color: #b55422;
-    /* Pequeno efeito flutuante */
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
 }
 
 /* ==========================================================================
-   REGRAS DE RESPONSIVIDADE (MOBILE-FIRST ADAPTADO)
+   REGRAS DE RESPONSIVIDADE (Mantêm o tamanho do botão fixo e estável)
    ========================================================================== */
 
-/* Ajustes para Tablets e Telas Médias (até 900px) */
+/* Ajustes para Tablets */
 @media (max-width: 900px) {
     #title {
-        font-size: 3.2rem; /* Diminui um pouco o título */
+        font-size: 3.8rem;
+    }
+    .principal {
+        margin-top: 40px;
     }
     .btn_comecar {
-        font-size: 1.5rem;
-        padding: 12px 40px;
+        font-size: 16px;
+        padding: 12px 30px;
     }
 }
 
-/* Ajustes para Smartphones (Telas Pequenas - até 600px) */
+/* Ajustes para Celulares (Mobile) */
 @media (max-width: 600px) {
     #title {
-        /* Encolhe o título para caber perfeitamente no celular */
-        font-size: 2.2rem; 
+        font-size: 2.3rem;
     }
     
     hr {
-        /* Diminui os espaçamentos */
-        margin: 25px 0;
+        margin: 30px 0;
+        width: 20%;
     }
 
     .btn_comecar {
-        font-size: 1.3rem;
-        /* O botão expande e toma a largura da tela no mobile */
+        font-size: 16px;
         padding: 12px 0;
-        width: 100%; 
-        max-width: 280px; /* Impede que fique exageradamente largo */
+        width: 100%;
+        max-width: 200px;
         text-align: center;
+    }
+    
+    .principal {
+        margin-top: 20px;
     }
 }
