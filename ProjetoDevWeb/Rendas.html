@@ -25,44 +25,65 @@
         </div>
       </div>
       
-      <button class="botao" onclick="salvarRenda()">CONTINUAR</button>
+      <button class="botao" onclick="prosseguirRenda()">CONTINUAR</button>
     </div>
     
-    <script src="JS/Renda.js?v=5"></script>
-
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        
-        const dadosSalvos = localStorage.getItem('dadosSimulacaoEdicao');
+      // Função auxiliar local para formatar entrada do usuário como moeda
+      function formatarMoeda(input) {
+        let valor = input.value.replace(/\D/g, "");
+        valor = (valor / 100).toFixed(2) + "";
+        valor = valor.replace(".", ",");
+        valor = valor.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+        input.value = valor ? "R$ " + valor : "";
+      }
 
+      function limparMascara(valorStr) {
+        if (!valorStr) return 0;
+        let limpo = valorStr.replace("R$", "").replace(/\./g, "").replace(",", ".").trim();
+        return parseFloat(limpo) || 0;
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const dadosSalvos = localStorage.getItem('dadosSimulacaoEdicao');
         if (dadosSalvos) {
           const dados = JSON.parse(dadosSalvos);
-
-          const inputSalario = document.getElementById('salario');
-          const inputOutras = document.getElementById('outras');
-
-          if (dados.renda.toLowerCase() === 'clt' || dados.renda.toLowerCase() === 'contrato') {
-            if (inputSalario) {
-
-              inputSalario.value = formatarValorParaInput(dados.valor);
-            }
+          
+          // Preenche os campos caso existam detalhes salvos na estrutura
+          if(dados.detalheRendas) {
+            document.getElementById('salario').value = dados.detalheRendas.salario || "";
+            document.getElementById('outras').value = dados.detalheRendas.outras || "";
           } else {
-
-            if (inputOutras) {
-              inputOutras.value = formatarValorParaInput(dados.valor);
+            // Fallback inteligente baseado no campo simples vindo do dashboard
+            if (dados.contrato && (dados.contrato.toLowerCase() === 'clt' || dados.contrato.toLowerCase() === 'contrato')) {
+              document.getElementById('salario').value = "R$ " + parseFloat(dados.recebido || 0).toLocaleString('pt-BR');
+            } else {
+              document.getElementById('outras').value = "R$ " + parseFloat(dados.recebido || 0).toLocaleString('pt-BR');
             }
           }
-
-          localStorage.removeItem('dadosSimulacaoEdicao');
         }
       });
 
-      function formatarValorParaInput(valorStr) {
-        if (!valorStr) return "R$ 0,00";
-        let numero = parseFloat(valorStr);
-        if (isNaN(numero)) return valorStr;
+      function prosseguirRenda() {
+        const salarioTexto = document.getElementById('salario').value;
+        const outrasTexto = document.getElementById('outras').value;
         
-        return numero.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        const vSalario = limparMascara(salarioTexto);
+        const vOutras = limparMascara(outrasTexto);
+        const totalRecebido = vSalario + vOutras;
+
+        let dadosEdicao = JSON.parse(localStorage.getItem('dadosSimulacaoEdicao')) || {};
+        
+        // Atualiza a estrutura temporária do objeto
+        dadosEdicao.recebido = totalRecebido;
+        dadosEdicao.contrato = vSalario > 0 ? 'CLT' : 'Freelancer';
+        dadosEdicao.detalheRendas = {
+          salario: salarioTexto,
+          outras: outrasTexto
+        };
+
+        localStorage.setItem('dadosSimulacaoEdicao', JSON.stringify(dadosEdicao));
+        window.location.href = './Gastos.html';
       }
     </script>
   </body>
