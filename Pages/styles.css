@@ -146,3 +146,196 @@ input[type="text"] {
   justify-content: center;
   align-items: center;
 }
+
+/* ==========================================================================
+   ESTILOS ADICIONADOS DO DASHBOARD
+   ========================================================================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.profile-icon {
+  background-color: white;
+  cursor: pointer;
+  color: #1c0033;
+  border-radius: 50%;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+}
+
+.simulacao-btn a {
+  display: block;
+  background-color: #00a000;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.simulacao-btn a:hover {
+  background-color: #008000;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: stretch;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  color: #000;
+}
+
+.filter-container {
+  position: relative;
+}
+
+.filter-btn {
+  height: 100%;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #eee;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;   
+  justify-content: center;
+}
+
+.filter-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 105;
+  min-width: 160px;
+  overflow: hidden;
+}
+
+.filter-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: none;
+  border: none;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.filter-menu button:hover {
+  background-color: #eee;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  color: #333;
+}
+
+tbody::after {
+  content: '';
+  display: table-row;
+  height: 60px; 
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+thead {
+  background-color: #eaeaea;
+}
+
+th:first-child { border-top-left-radius: 1rem; }
+th:last-child { border-top-right-radius: 1rem; }
+
+.options {
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: relative;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.crud-menu {
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  color: #1c0033;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.crud-menu button {
+  display: block;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.crud-menu button:hover {
+  background-color: #eee;
+}
+
+.sem-registro {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #aaa;
+  font-weight: 500;
+  padding: 2rem 0;
+}
+
+/* Sobrescreve as regras de flexbox centrais do login apenas nesta tela */
+body.body-dashboard {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1a0033;
+  padding: 2rem;
+}
+
+/* Envelopa o conteúdo garantindo que ocupe a largura correta de um painel */
+.dashboard-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; /* Centraliza o bloco do painel no meio de monitores grandes */
+}
