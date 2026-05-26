@@ -61,34 +61,35 @@ hr {
     width: 100%;
 }
 
-/* Botão retangular com dimensões e FONTE idênticas ao estilocontrato.css */
+/* ==========================================================================
+   BOTÃO "COMEÇAR" (.btn_comecar) - CÓPIA EXATA DO MODELO SOLICITADO
+   ========================================================================== */
 .btn_comecar {
-    /* MODIFICADO: Fonte alterada para Arial para bater 100% com o estilocontrato.css */
     font-family: 'Arial', sans-serif; 
     color: aliceblue;
     text-decoration: none;
     background-color: #D06833; /* Mantém a cor laranja original da primeira tela */
     border: none; 
     
-    /* Proporções estritas copiadas do seu modelo de botão */
-    padding: 12px 30px; 
+    /* PROPORÇÕES COPIADAS EXATAMENTE DO SEU MODELO DE CONTRATO */
+    padding: 15px 40px;           /* Ajustado para o tamanho real do modelo */
     font-size: 16px; 
-    border-radius: 8px; 
-    margin-top: 20px;
+    border-radius: 10px;          /* Ajustado de 8px para 10px exatos */
+    text-transform: uppercase;    /* Força LETRAS MAIÚSCULAS igual ao outro botão */
     
+    margin-top: 20px;
     cursor: pointer;
     display: inline-block;
-    transition: all 0.2s ease;
+    transition: background-color 0.3s ease; /* Transição linear suave padrão */
 }
 
-/* Efeito Hover */
+/* Efeito Hover sem alterar o tamanho do botão */
 .btn_comecar:hover {
-    background-color: #b55422;
-    font-weight: bold;
+    background-color: #b55422;    /* Tom de laranja mais escuro ao passar o mouse */
 }
 
 /* ==========================================================================
-   REGRAS DE RESPONSIVIDADE (Mantêm o tamanho do botão fixo e estável)
+   REGRAS DE RESPONSIVIDADE (Mantêm o tamanho do botão simétrico)
    ========================================================================== */
 
 /* Ajustes para Tablets */
@@ -101,7 +102,7 @@ hr {
     }
     .btn_comecar {
         font-size: 16px;
-        padding: 12px 30px;
+        padding: 15px 40px; /* Mantém o tamanho fixo padrão do modelo */
     }
 }
 
@@ -116,11 +117,11 @@ hr {
         width: 20%;
     }
 
+    /* Impede o botão de esticar de forma desproporcional na tela do celular */
     .btn_comecar {
         font-size: 16px;
-        padding: 12px 0;
-        width: 100%;
-        max-width: 200px;
+        padding: 15px 40px;
+        width: auto; 
         text-align: center;
     }
     
