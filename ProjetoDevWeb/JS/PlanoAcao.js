@@ -8,12 +8,13 @@ window.onload = function() {
     const tipoContrato = localStorage.getItem("tipoContrato");
     
     // ==========================================================================
-    // 2. CÁLCULO DA TABELA DO INSS (Atualizado conforme a imagem fornecida)
+    // 2. CÁLCULO DA TABELA DO INSS
     // ==========================================================================
     let inss = 0;
+    let isEstagio = tipoContrato && tipoContrato.toLowerCase() === "estagio";
 
-    // Se for clt, aplica as alíquotas baseadas estritamente na tabela do Regime Próprio enviada
-    if (tipoContrato === "clt" && rendaTotalBruta > 0) {
+    // Se não for estágio, aplica as alíquotas baseadas estritamente na tabela do Regime Próprio
+    if (!isEstagio && rendaTotalBruta > 0) {
         if (rendaTotalBruta <= 1045.00) {
             inss = rendaTotalBruta * 0.075; // Até um salário mínimo: 7,5%
         } else if (rendaTotalBruta <= 2089.60) {
@@ -32,55 +33,58 @@ window.onload = function() {
             inss = rendaTotalBruta * 0.22;  // Acima de R$ 40.747,20: 22%
         }
     } 
-    // Se for estagio, o "inss" continua valendo 0 de forma estrita
 
     // ==========================================================================
-    // 3. CÁLCULO DA SOBRA REAL
+    // 3. CÁLCULO DA RENDA LÍQUIDA E SOBRA REAL
     // ==========================================================================
-    const sobra = rendaTotalBruta - inss - gastos - investimento;
+    const rendaLiquida = rendaTotalBruta - inss;
+    const sobra = rendaLiquida - gastos - investimento;
 
-    // 4. Preenchimento dos Cards no HTML
-    if(document.getElementById("res-renda")) {
-        document.getElementById("res-renda").innerText = formatar(rendaTotalBruta);
+    // ==========================================================================
+    // 4. PREENCHIMENTO DOS CARDS NO HTML
+    // ==========================================================================
+    if (document.getElementById("res-renda")) {
+        // Exibe a Renda Líquida atualizada após o abatimento do imposto
+        document.getElementById("res-renda").innerText = formatar(rendaLiquida);
     }
     
-    if(document.getElementById("res-gastos")) {
-        // Exibe o total de gastos subtraindo a parte que foi para investimento
-        document.getElementById("res-gastos").innerText = formatar(gastos - investimento);
+    if (document.getElementById("res-gastos")) {
+        // Exibe o total de gastos puro conforme a nova estrutura
+        document.getElementById("res-gastos").innerText = formatar(gastos);
     }
     
-    if(document.getElementById("res-investimento")) {
+    if (document.getElementById("res-investimento")) {
         document.getElementById("res-investimento").innerText = formatar(investimento);
     }
     
-    if(document.getElementById("res-saldo")) {
+    if (document.getElementById("res-saldo")) {
         document.getElementById("res-saldo").innerText = formatar(sobra);
     }
 
-    // 5. Lógica de Exibição Textual e Cores do INSS
+    // ==========================================================================
+    // 5. EXIBIÇÃO DO INSS
+    // ==========================================================================
     const campoInss = document.getElementById("res-inss");
     if (campoInss) {
-        if (tipoContrato === "estagio") {
-            campoInss.innerText = "Não há desconto!";
-            campoInss.style.color = "#00ff88"; // Verde para o Estágio
+        if (isEstagio) {
+            campoInss.innerText = "Sem desconto";
+            campoInss.style.color = "#00ff88";
         } else {
             campoInss.innerText = formatar(inss);
-            campoInss.style.color = "#ff4d4d"; // Vermelho para o CLT
+            campoInss.style.color = "#ff4d4d";
         }
     }
 
-    // 6. Estilização Visual da Sobra (Verde para positivo/zero, Vermelho para negativo)
+    // ==========================================================================
+    // 6. ESTILIZAÇÃO VISUAL DA SOBRA
+    // ==========================================================================
     const campoSobra = document.getElementById("res-saldo");
     if (campoSobra) {
         campoSobra.style.color = sobra < 0 ? "#ff4d4d" : "#00ff88";
     }
 };
 
-/**
- * Função para reiniciar a simulação e retornar ao Dashboard de forma segura
- */
 function voltarInicio() {
-    // Remove apenas as chaves desta simulação para preservar a lista e dados de login
     localStorage.removeItem("totalRenda");
     localStorage.removeItem("totalGastos");
     localStorage.removeItem("totalInvestimento");
