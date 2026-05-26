@@ -52,6 +52,9 @@ body {
     color: white;
     border-radius: 10px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; 
+    margin-top: 20px;
   }
 
 .centro{
@@ -88,8 +91,13 @@ body {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
   }
 
+  button:hover, .botao:hover {
+    background-color: #a282ff; /* Roxo ligeiramente mais claro */
+  }
+  
   .container {
     display: flex;
     justify-content: center;
