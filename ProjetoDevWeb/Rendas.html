@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rendas</title>
-    <link rel="stylesheet" href="CSS/EstiloRendas.css?v=3">
+    <link rel="stylesheet" href="CSS/EstiloRendas.css">
   </head>
   <body>
     <div class="centro">
@@ -59,9 +59,7 @@
               document.getElementById('outras').value = "R$ " + parseFloat(dados.recebido || 0).toLocaleString('pt-BR', {minimumFractionDigits: 2});
             }
           }
-          // CRÍTICO: Não removemos aqui se o Gastos.html precisa ler depois!
         } else {
-          // Garante estado zerado absoluto caso seja uma nova simulação
           document.getElementById('salario').value = "";
           document.getElementById('outras').value = "";
         }
@@ -79,8 +77,7 @@
           alert("Por favor, insira pelo menos um valor de renda para conseguir avançar.");
           return;
         }
-
-        // Mantém o ID ativo de edição se ele já existir no localStorage global
+        
         let dadosEdicao = JSON.parse(localStorage.getItem('dadosSimulacaoEdicao')) || {};
         
         dadosEdicao.recebido = totalRecebido;
