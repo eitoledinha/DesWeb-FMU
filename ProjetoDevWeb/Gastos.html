@@ -13,7 +13,7 @@
         
         <div class="grid-gastos">
             <div class="item-gasto"><label>Moradia (Aluguel, Luz...)</label><input type="text" id="Moradia" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
-            <div class="item-gasto"><label>Alimentação (Mercado, iFood...)</label><input type="text" id="Alimento" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
+            <div class="item-gasto"><label>Alimentação (Market, iFood...)</label><input type="text" id="Alimento" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
             <div class="item-gasto"><label>Transporte (Combustível, Uber...)</label><input type="text" id="Transporte" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
             <div class="item-gasto"><label>Saúde (Convênio, Farmácia...)</label><input type="text" id="Saude" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
             <div class="item-gasto"><label>Assinaturas (Netflix, Spotify...)</label><input type="text" id="Assinaturas" class="caixa" placeholder="R$ 0,00" oninput="formatarMoeda(this)"></div>
@@ -65,6 +65,9 @@
         let totalGastos = 0;
         let dicionarioGastos = {};
 
+        // ACRESCENTADO: Captura o valor isolado do campo Investimento para alimentar o PlanoAcao.js
+        let valorInvestimento = limparMascara(document.getElementById("Investimento").value);
+
         IDsCategorias.forEach(id => {
           const campoTexto = document.getElementById(id).value;
           dicionarioGastos[id] = campoTexto;
@@ -97,6 +100,10 @@
         }
 
         localStorage.setItem('listaSimulacoes', JSON.stringify(listaSimulacoes));
+
+        localStorage.setItem('totalRenda', (dadosEdicao.recebido || 0).toString());
+        localStorage.setItem('totalGastos', totalGastos.toString());
+        localStorage.setItem('totalInvestimento', valorInvestimento.toString());
 
         window.location.href = './PlanoAcao.html';
       }
