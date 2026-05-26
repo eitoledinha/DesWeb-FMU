@@ -67,22 +67,32 @@ hr {
     font-family: 'Arial', sans-serif; 
     color: aliceblue;
     text-decoration: none;
-    background-color: #D06833;
+    background-color: #D06833; /* Mantém o seu laranja */
     border: none; 
     
-    padding: 15px 40px;
+    /* Dimensões do modelo */
+    padding: 12px 30px; 
     font-size: 16px; 
-    border-radius: 10px;
-    text-transform: uppercase;
-    
+    border-radius: 8px; 
     margin-top: 20px;
+    
     cursor: pointer;
     display: inline-block;
-    transition: background-color 0.3s ease;
+    transition: all 0.2s ease;
+
+    /* ==========================================================================
+       ADICIONE ESSAS TRÊS LINHAS ABAIXO PARA DEIXAR A LETRA IGUAL AO ROXO
+       ========================================================================== */
+    font-weight: bold;           /* Deixa a letra grossa (Negrito) igual ao roxo */
+    text-transform: uppercase;   /* Garante que fique em letras maiúsculas */
+    letter-spacing: 0.5px;       /* Dá o mesmo respiro elegante entre as letras */
 }
 
+/* ==========================================================================
+   TRECHO MODIFICADO: Hover do Botão Começar (Laranja mais claro)
+   ========================================================================== */
 .btn_comecar:hover {
-    background-color: #b55422;
+    background-color: #fba068;   /* Tom de laranja mais claro e iluminado ao passar o mouse */
 }
 
 /* ==========================================================================
