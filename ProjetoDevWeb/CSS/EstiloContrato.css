@@ -30,13 +30,15 @@ body {
   }
 
   .option:hover {
+    background-color: #ff914d;    
+    color: #1c0826;               
+    font-weight: bold;            
     border: 2px solid #ff914d;
-    padding: 30px;
     cursor: pointer;
     width: 250px;
     border-radius: 10px;
     transition: 0.3s;
-  }
+}
 
   .option.selected {
     background-color: #ff914d;
@@ -64,14 +66,12 @@ body {
     height: 100%;
 }
 
-.botao-selecao {
-    border: 2px solid #ff914d;
-    padding: 30px;
-    border-radius: 10px;
-    width: 250px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+.botao-selecao:hover {
+    background-color: #ff914d;    /* Tom de laranja mais escuro e forte */
+    color: #1c0826;               /* Muda o texto para roxo escuro */
+    font-weight: bold;            /* Aplica o negrito no texto */
+    transform: scale(1.03);       /* Mantém o efeito de crescer levemente */
+}
 
   .botao-selecao:hover {
     transform: scale(1.03);
