@@ -34,7 +34,6 @@ body {
     margin-top: 80px; 
 }
 
-/* Título com a fonte elegante original */
 #title {
     font-family: 'Times New Roman', Times, serif;
     font-size: 5.3rem;
@@ -68,24 +67,22 @@ hr {
     font-family: 'Arial', sans-serif; 
     color: aliceblue;
     text-decoration: none;
-    background-color: #D06833; /* Mantém a cor laranja original da primeira tela */
+    background-color: #D06833;
     border: none; 
     
-    /* PROPORÇÕES COPIADAS EXATAMENTE DO SEU MODELO DE CONTRATO */
-    padding: 15px 40px;           /* Ajustado para o tamanho real do modelo */
+    padding: 15px 40px;
     font-size: 16px; 
-    border-radius: 10px;          /* Ajustado de 8px para 10px exatos */
-    text-transform: uppercase;    /* Força LETRAS MAIÚSCULAS igual ao outro botão */
+    border-radius: 10px;
+    text-transform: uppercase;
     
     margin-top: 20px;
     cursor: pointer;
     display: inline-block;
-    transition: background-color 0.3s ease; /* Transição linear suave padrão */
+    transition: background-color 0.3s ease;
 }
 
-/* Efeito Hover sem alterar o tamanho do botão */
 .btn_comecar:hover {
-    background-color: #b55422;    /* Tom de laranja mais escuro ao passar o mouse */
+    background-color: #b55422;
 }
 
 /* ==========================================================================
@@ -102,7 +99,7 @@ hr {
     }
     .btn_comecar {
         font-size: 16px;
-        padding: 15px 40px; /* Mantém o tamanho fixo padrão do modelo */
+        padding: 15px 40px;
     }
 }
 
