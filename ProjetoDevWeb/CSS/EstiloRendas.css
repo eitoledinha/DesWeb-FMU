@@ -32,7 +32,6 @@ h1, .titulo {
     text-align: center;
 }
 
-/* Grid da página de Gastos */
 .grid-gastos {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -86,7 +85,6 @@ button:hover, .botao:hover {
     background-color: #a183f3;
 }
 
-/* Layout dos cards de Resultado (PlanoAcao.html) */
 .container-resultado {
     display: flex;
     flex-direction: column;
@@ -94,7 +92,7 @@ button:hover, .botao:hover {
     margin: 20px auto;
     width: 100%;
     max-width: 450px;
-} /* Chave fechada aqui! */
+}
 
 .card-resultado {
     background-color: rgba(255, 255, 255, 0.05);
@@ -134,7 +132,6 @@ button:hover, .botao:hover {
     font-weight: normal;
 }
 
-/* Responsividade */
 @media (max-width: 650px) {
     .grid-gastos {
         grid-template-columns: 1fr;
