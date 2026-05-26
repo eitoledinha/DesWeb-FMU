@@ -95,7 +95,7 @@ body {
   }
 
   button:hover, .botao:hover {
-    background-color: #a282ff; /* Roxo ligeiramente mais claro */
+    background-color: #a282ff;
   }
   
   .container {
