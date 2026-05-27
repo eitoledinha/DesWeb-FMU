@@ -45,11 +45,13 @@
 
       document.addEventListener("DOMContentLoaded", function() {
         const dadosSalvos = localStorage.getItem('dadosSimulacaoEdicao');
-        
-        if (dadosSalvos) {
+        const idEmEdicao = localStorage.getItem('idEmEdicao'); // Captura a chave que valida se é uma edição
+  
+        // REGRA ESTRITA: Só preenche os inputs se houver um ID ATIVO de edição vindo do histórico
+        if (idEmEdicao && dadosSalvos) {
           const dados = JSON.parse(dadosSalvos);
-          
-          if(dados.detalheRendas) {
+    
+          if (dados.detalheRendas) {
             document.getElementById('salario').value = dados.detalheRendas.salario || "";
             document.getElementById('outras').value = dados.detalheRendas.outras || "";
           } else {
@@ -60,9 +62,10 @@
             }
           }
         } else {
+          // Se for uma simulação NOVA (não tem idEmEdicao), os campos iniciam obrigatoriamente zerados
           document.getElementById('salario').value = "";
           document.getElementById('outras').value = "";
-        }
+        } 
       });
 
       function prosseguirRenda() {
