@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro - Plano de Ação</title>
+    <link rel="stylesheet" href="../../css/EstiloRendas.css">
+</head>
+<body>
+    <div class="centro">
+        <h1 class="titulo">PLANO DE AÇÃO</h1>
+        <p class="frase">Confira abaixo o balanço final das suas finanças.</p>
+
+        <div class="container-resultado">
+            <div class="card-resultado">
+                <h2>Sua Renda Líquida</h2>
+                <p id="res-renda">R$ 0,00</p>
+            </div>
+
+            <div class="card-resultado">
+                <h2>Desconto INSS</h2>
+                <p id="res-inss">R$ 0,00</p>
+            </div>
+
+            <div class="card-resultado">
+                <h2>Total de Gastos</h2>
+                <p id="res-gastos">R$ 0,00</p>
+            </div>
+
+            <div class="card-resultado">
+                <h2>Total de Investimento</h2>
+                <p id="res-investimento">R$ 0,00</p>
+            </div>
+
+            <div class="card-resultado destaque">
+                <h2>Sobra</h2>
+                <p id="res-saldo">R$ 0,00</p>
+                <small id="mensagem-status"></small>
+            </div>
+        </div>
+
+        <button class="botao" onclick="voltarInicio()">REFAZER SIMULAÇÃO</button>
+    </div>
+
+    <script src="../../js/PlanoAcao.js"></script>
+</body>
+</html>
