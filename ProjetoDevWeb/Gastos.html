@@ -54,7 +54,6 @@
             });
           }
         } else {
-          // Garante campos limpos em novas simulações convencionais
           IDsCategorias.forEach(id => {
             document.getElementById(id).value = "";
           });
@@ -65,19 +64,24 @@
         let totalGastos = 0;
         let dicionarioGastos = {};
 
-        // ACRESCENTADO: Captura o valor isolado do campo Investimento para alimentar o PlanoAcao.js
         let valorInvestimento = limparMascara(document.getElementById("Investimento").value);
 
+        // ==========================================================================
+        // AJUSTADO: Se o ID for 'Investimento', guarda no dicionário mas NÃO soma nos gastos
+        // ==========================================================================
         IDsCategorias.forEach(id => {
           const campoTexto = document.getElementById(id).value;
           dicionarioGastos[id] = campoTexto;
-          totalGastos += limparMascara(campoTexto);
+          
+          if (id !== "Investimento") {
+            totalGastos += limparMascara(campoTexto);
+          }
         });
 
-        // VALIDAÇÃO EXATA: Se a soma de todos os gastos for zero, impede o envio e exibe o alert
-        if (totalGastos <= 0) {
-          alert("Por favor, insira pelo menos um valor de gasto para conseguir finalizar.");
-          return; // Aborta a execução para não salvar dados vazios e não mudar de página
+        // VALIDAÇÃO: Valida se há gastos ou investimentos para prosseguir de forma justa
+        if (totalGastos <= 0 && valorInvestimento <= 0) {
+          alert("Por favor, insira pelo menos um valor de gasto ou investimento para conseguir finalizar.");
+          return;
         }
 
         let dadosEdicao = JSON.parse(localStorage.getItem('dadosSimulacaoEdicao')) || {};
