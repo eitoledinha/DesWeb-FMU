@@ -8,7 +8,10 @@ window.onload = function() {
 
     // Extrai os valores numéricos de dentro do objeto unificado
     const rendaTotalBruta = parseFloat(dadosEdicao.recebido) || 0;
-    const tipoContrato = dadosEdicao.contrato || "";
+    
+    // CORREÇÃO AQUI: Dá prioridade para o 'tipoContrato' global (escolhido na primeira tela)
+    // para evitar que a tela de Rendas mude o contrato para CLT de forma errônea.
+    const tipoContrato = localStorage.getItem("tipoContrato") || dadosEdicao.contrato || "";
     
     // Puxa os gastos e investimentos das outras chaves do localStorage
     const gastos = parseFloat(localStorage.getItem("totalGastos")) || 0;
@@ -28,7 +31,10 @@ window.onload = function() {
     // 2. CÁLCULO DA TABELA DO INSS (PROGRESSIVO EM CIMA APENAS DO SALÁRIO)
     // ==========================================================================
     let inss = 0;
-    let isEstagio = tipoContrato && tipoContrato.toLowerCase() === "estagio";
+    
+    // VALIDAÇÃO CORRIGIDA: Remove acentos e espaços para evitar qualquer erro de digitação no HTML anterior
+    let contratoLimpo = tipoContrato.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    let isEstagio = contratoLimpo.includes("estagio") || contratoLimpo.includes("outros") || contratoLimpo === "freelancer";
 
     if (!isEstagio && salarioPuro > 0) {
         let salarioRestante = salarioPuro;
