@@ -1,7 +1,7 @@
 window.onload = function() {
     const formatar = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-    // ==========================================================================
+    // ========================================================================== 
     // 1. CORREÇÃO: Recupera o objeto unificado do LocalStorage
     // ==========================================================================
     const dadosEdicao = JSON.parse(localStorage.getItem('dadosSimulacaoEdicao')) || {};
